@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+module Net
+  module SSH
+    module Locate
+      LIB=File.dirname(__FILE__) + '/../lib'
+    end
+  end
+end
+$: << Net::SSH::Locate::LIB unless $:.include?(File.expand_path(Net::SSH::Locate::LIB))
+require "thor"
+require "net/ssh/locate"
+
+begin
+  Net::SSH::Locate::App.start
+rescue ArgumentError
+  exit
+end
