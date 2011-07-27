@@ -37,7 +37,7 @@ Caveat
 
 TODO
 ----
-As the YAGNI wisdom tells us not to phantasize requirements, here are some potentially useful things that are not implemented yet:
+As the YAGNI wisdom tells us not to fantasize requirements, here are some potentially useful things that are not implemented yet:
 
   - Be aware of the agent launched by Ubuntu
   - Have a more sensible output if no agent was found
