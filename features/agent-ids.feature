@@ -29,7 +29,7 @@ Feature: Agent IDs
     And the output should contain the correct agent socket
     
   Scenario: Recognize and honor the agent managed by Ubuntu
-    Given an SSH agent has been launched in my Ubuntu session
+    Given an ssh agent has been launched in my Ubuntu session
     When I run `ssh-locate`
     Then the output should contain "SSH_AUTH_SOCK="
     And the output should contain "export SSH_AUTH_SOCK;"
