@@ -7,7 +7,7 @@ group :dev do
   gem "rb-inotify"
   gem "libnotify"
   gem "cucumber"
-  gem "aruba", git: "git@github.com:ameuret/aruba.git"
+  gem "aruba", git: "git://github.com/ameuret/aruba.git"
   gem "guard-cucumber"
 end
 
