@@ -1,5 +1,6 @@
 ssh-locate
 ==========
+"!https://secure.travis-ci.org/[ameuret]/[ssh-locate].png!":http://travis-ci.org/[ameuret]/[ssh-locate]
   
   A command line tool that helps you locate and contact a SSH agent launched in a separate session.
   
@@ -27,7 +28,7 @@ Launch your SSH agent and tell it to use a specific socket file with the -a opti
 
 In a later shell (or any process running for the user owning the agent):
 
-    $ eval ssh-locate
+    $ eval `ssh-locate`
     Agent pid 13457
 
 Caveat
