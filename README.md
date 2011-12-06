@@ -26,7 +26,7 @@ Launch your SSH agent and tell it to use a specific socket file with the -a opti
 
     ssh-agent -a /tmp/deployer-38us9f
 
-In a later shell (or any process running for the user owning the agent):
+In a later shell (or any process running for the user who owns the agent):
 
     $ eval `ssh-locate`
     Agent pid 13457
