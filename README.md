@@ -1,6 +1,6 @@
 ssh-locate
 ==========
-"!https://secure.travis-ci.org/[ameuret]/[ssh-locate].png!":http://travis-ci.org/[ameuret]/[ssh-locate]
+"!https://secure.travis-ci.org/ameuret/ssh-locate.png!":http://travis-ci.org/ameuret/ssh-locate
   
   A command line tool that helps you locate and contact a SSH agent launched in a separate session.
   
