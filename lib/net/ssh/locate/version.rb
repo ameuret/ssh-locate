@@ -1,7 +1,8 @@
 module Net
   module SSH
     module Locate
-      VERSION = "0.0.1"
+      # Honoring http://semver.org/
+      VERSION = "0.1.0"
     end
   end
 end

@@ -9,7 +9,27 @@ module Net
         include Thor::Actions
         
         def locate_agent
-          procs=Sys::ProcTable.ps.select do 
+          @scanner = Scanner.new
+          @scanner.scan
+        end
+        
+        def print_shell_commands
+          return unless @scanner.found?
+          print "SSH_AUTH_SOCK=#{@scanner.agentSocket}; "
+          puts "export SSH_AUTH_SOCK;"
+          print "SSH_AGENT_PID=#{@scanner.agentPID}; "
+          puts "export SSH_AGENT_PID;"
+          puts "echo Agent pid #{@scanner.agentPID};"
+        end
+      end
+  
+      class Scanner
+        
+        attr_reader :agentSocket, :agentPID, :found
+        
+        def scan
+          @found = false
+          procs = Sys::ProcTable.ps.select do 
             |p|
             (p.cmdline =~ /ssh-agent/) && !(p.cmdline =~ /--session=ubuntu/) && !(p.state=='Z')
           end
@@ -17,19 +37,17 @@ module Net
           p=procs.first
           p.cmdline =~ /ssh-agent\s-a ([-.a-zA-Z0-9_\/]+)/
           return if !$~
+          @found = true
           @agentSocket = $1
           @agentPID = p.pid
         end
-        
-        def print_shell_commands
-          return if (!@agentPID || !@agentSocket)
-          print "SSH_AUTH_SOCK=#{@agentSocket}; "
-          puts "export SSH_AUTH_SOCK;"
-          print "SSH_AGENT_PID=#{@agentPID}; "
-          puts "export SSH_AGENT_PID;"
-          puts "echo Agent pid #{@agentPID};"
+  
+        def found?
+          @found
         end
+
       end
+
     end
   end
 end
