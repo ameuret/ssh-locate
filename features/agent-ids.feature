@@ -5,6 +5,7 @@ Feature: Agent IDs
   
   Scenario: Locate a running agent
     Given an ssh agent has been launched without parameters
+    Given the user's shell is Bash
     When I run `ssh-locate`
     Then the output should contain "SSH_AUTH_SOCK="
     And the output should contain "export SSH_AUTH_SOCK;"
@@ -20,6 +21,7 @@ Feature: Agent IDs
     
   Scenario: Locate an agent that shows its socket
     Given an ssh agent has been launched with a specific socket
+    Given the user's shell is Bash
     When I run `ssh-locate`
     Then the output should contain "SSH_AUTH_SOCK="
     And the output should contain "export SSH_AUTH_SOCK;"
@@ -43,3 +45,13 @@ Feature: Agent IDs
     And no ssh agent is running for me
     When I run `ssh-locate`
     Then the output should contain "no agent found"
+
+  Scenario: Support Fish
+    Given an ssh agent has been launched with a specific socket
+    Given the user's shell is Fish
+    When I run `ssh-locate`
+    Then the output should contain "set -x SSH_AUTH_SOCK"
+    And the output should contain "set -x SSH_AGENT_PID"
+    And the output should contain the correct agent PID
+    And the output should contain the correct agent socket
+    

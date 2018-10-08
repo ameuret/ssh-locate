@@ -14,13 +14,32 @@ module Net
         end
         
         def print_shell_commands
+          if usingFish?
+            fishOutput
+          else
+            bashOutput
+          end
           return unless @scanner.found?
-          print "SSH_AUTH_SOCK=#{@scanner.agentSocket}; "
-          puts "export SSH_AUTH_SOCK;"
-          print "SSH_AGENT_PID=#{@scanner.agentPID}; "
-          puts "export SSH_AGENT_PID;"
-          puts "echo Agent pid #{@scanner.agentPID};"
         end
+
+        private
+          def usingFish?
+            passwdEntry = `getent passwd #{ENV['USER']}`
+            passwdEntry =~ /fish$/
+          end
+
+          def bashOutput
+            print "SSH_AUTH_SOCK=#{@scanner.agentSocket};"
+            puts "export SSH_AUTH_SOCK;"
+            print "SSH_AGENT_PID=#{@scanner.agentPID};"
+            puts "export SSH_AGENT_PID;"
+            puts "echo Agent pid #{@scanner.agentPID};"
+          end          
+
+          def fishOutput
+            puts "set -x SSH_AUTH_SOCK #{@scanner.agentSocket}"
+            puts "set -x SSH_AGENT_PID #{@scanner.agentPID}"
+          end          
       end
   
       class Scanner

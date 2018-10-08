@@ -39,3 +39,15 @@ end
 Then /^the output should contain the correct agent socket$/ do
   assert_partial_output( @agentSocket.to_s, all_output )
 end
+
+Given("the user's shell is Fish") do
+  pending "Should check the actual parent process. Not just the default shell setting."
+  # passwdEntry = `getent passwd #{ENV['USER']}`
+  # expect(passwdEntry).to match(/fish$/)
+end
+
+Given("the user's shell is Bash") do
+  pending "Should check the actual parent process. Not just the default shell setting."
+  # passwdEntry = `getent passwd #{ENV['USER']}`
+  # expect(passwdEntry).to match(/fish$/)
+end

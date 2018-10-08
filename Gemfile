@@ -10,5 +10,6 @@ group :dev do
   gem "cucumber"
   gem "aruba", git: "git://github.com/ameuret/aruba.git"
   gem "guard-cucumber"
+  gem "rspec-expectations"
 end
 
