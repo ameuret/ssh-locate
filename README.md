@@ -13,7 +13,9 @@ Features
     SSH_AGENT_PID=12427; export SSH_AGENT_PID;
     echo Agent pid 12427;
 ```
-  
+
+  - supports the Fish shell
+
 Installation
 ------------
   
