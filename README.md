@@ -33,6 +33,14 @@ In a later shell (or any process running for the user who owns the agent):
     $ eval `ssh-locate`
     Agent pid 13457
 
+Fish startup
+------------
+
+You can launch and activate an agent at startup by adding this to your config.fish:
+
+    ssh-agent -a /tmp/arnaud
+    source (ssh-locate|psub -f)
+
 Caveat
 ------
 
