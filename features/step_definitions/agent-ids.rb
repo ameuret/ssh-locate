@@ -29,7 +29,7 @@ Given /^no ssh agent is running for me$/ do
 end
 
 Then /^the output should be empty$/ do
-  assert_exact_output('', all_output)
+  expect(all_output).to be_empty
 end
 
 Then /^the output should contain the correct agent PID$/ do

@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 gemspec
 
@@ -8,7 +8,7 @@ group :dev do
   gem "rb-inotify"
   gem "libnotify"
   gem "cucumber"
-  gem "aruba", git: "git://github.com/ameuret/aruba.git"
+  gem "aruba"
   gem "guard-cucumber"
   gem "rspec-expectations"
 end

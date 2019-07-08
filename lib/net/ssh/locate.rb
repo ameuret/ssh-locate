@@ -14,12 +14,12 @@ module Net
         end
         
         def print_shell_commands
+          return unless @scanner.found?
           if usingFish?
             fishOutput
           else
             bashOutput
           end
-          return unless @scanner.found?
         end
 
         private
