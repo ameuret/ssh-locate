@@ -50,7 +50,7 @@ module Net
 
         def scan
           @found = false
-          procs = Sys::ProcTable.ps.select do 
+          procs = Sys::ProcTable.ps(smaps: false, cgroup: false).select do
             |p|
             res = p.cmdline =~ /ssh-agent/ && p.cmdline !~ /--session=ubuntu/ && p.state != 'Z'
             res
