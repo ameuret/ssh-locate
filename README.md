@@ -32,6 +32,13 @@ set -x SSH_AGENT_PID 1517651
 
 (See also Fish Startup below)
 
+  - shows EMACS Lisp to activate agent:
+  
+``` emacs-lisp
+(setenv "SSH_AUTH_SOCK" "/tmp/zed")
+(setenv "SSH_AGENT_PID" "3216002")
+```
+
 Installation
 ------------
   
@@ -54,6 +61,12 @@ In a later shell (or any process running for the user who owns the agent):
 ### Fish
 
     > ssh-locate | source
+
+### EMACS
+
+Using the `--emacs` option will output the lisp code to set the necessary environment variable in EMACS. Just paste this anywhere and execute `eval-last-sexp` (usually bound to C-x C-e) with the cursor positionned at the end of each line.
+    
+    ssh-locate --emacs
 
 Fish startup
 ------------

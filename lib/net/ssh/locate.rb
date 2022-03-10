@@ -9,6 +9,8 @@ module Net
       class App < Thor::Group
         include Thor::Actions
 
+        class_option :emacs, type: :boolean
+
         def locate_agent
           @scanner = Scanner.new
           @scanner.scan
@@ -16,7 +18,10 @@ module Net
 
         def print_shell_commands
           return unless @scanner.found?
-          if usingFish?
+
+          if options[:emacs]
+            emacsOutput
+          elsif usingFish?
             fishOutput
           else
             bashOutput
@@ -43,6 +48,11 @@ module Net
           puts "set -x SSH_AUTH_SOCK #{@scanner.agentSocket}"
           puts "set -x SSH_AGENT_PID #{@scanner.agentPID}"
         end
+
+        def emacsOutput
+          puts "(setenv \"SSH_AUTH_SOCK\" \"#{@scanner.agentSocket}\")"
+          puts "(setenv \"SSH_AGENT_PID\" \"#{@scanner.agentPID}\")"
+        end
       end
 
       class Scanner
@@ -62,7 +72,7 @@ module Net
           return unless $LAST_MATCH_INFO
 
           @found = true
-          @agentSocket = $LAST_MATCH_INFO[0]
+          @agentSocket = $LAST_MATCH_INFO[1]
           @agentPID = p.pid
         end
 

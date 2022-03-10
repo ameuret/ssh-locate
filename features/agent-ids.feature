@@ -55,4 +55,11 @@ Feature: Agent IDs
     And the output should contain "set -x SSH_AGENT_PID"
     And the output should contain the correct agent PID
     And the output should contain the correct agent socket
-    
+
+   Scenario: Support EMACS
+    Given an ssh agent has been launched with a specific socket
+    When I run `ssh-locate --emacs`
+    Then the output should contain "(setenv \"SSH_AUTH_SOCK"
+    And the output should contain "(setenv \"SSH_AGENT_PID"
+    And the output should contain the correct agent PID
+    And the output should contain the correct agent socket
