@@ -2,7 +2,7 @@ ssh-locate
 ==========
 [![Build Status](https://secure.travis-ci.org/ameuret/ssh-locate.png)](http://travis-ci.org/ameuret/ssh-locate)
 
-  A command line tool that helps you locate and contact a SSH agent launched in a separate session.
+  A command line tool that helps you locate and contact a SSH agent launched in a separate shell.
 
 
 ### Wait, what ⁉️
@@ -64,7 +64,7 @@ In a later shell (or any process running for the user who owns the agent):
 
 ### EMACS
 
-Using the `--emacs` option will output the lisp code to set the necessary environment variable in EMACS. Just paste this anywhere and execute `eval-last-sexp` (usually bound to C-x C-e) with the cursor positionned at the end of each line.
+Using the `--emacs` option will output the lisp code to set the necessary environment variables in EMACS. Just paste this anywhere (in a scratch buffer for exam bbple) and execute `eval-last-sexp` (usually bound to C-x C-e) with the cursor positionned at the end of each line.
     
     ssh-locate --emacs
 
