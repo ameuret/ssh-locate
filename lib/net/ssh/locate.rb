@@ -8,8 +8,30 @@ module Net
     module Locate
       class App < Thor::Group
         include Thor::Actions
+        def self.banner
+          <<-LONGDESC
+ssh-locate will search for a running ssh-agent and output the environment
+  variables needed to contact it.
 
-        class_option :emacs, type: :boolean
+  To make sure that you're selecting the agent you launched and not the agent
+  launched by your Desktop Environment, you must use the -a option to specify
+  a socket path:
+
+  $ ssh-agent -a /tmp/zed
+  SSH_AUTH_SOCK=/tmp/zed; export SSH_AUTH_SOCK;
+  SSH_AGENT_PID=1908155; export SSH_AGENT_PID;
+  echo Agent pid 1908155;
+
+  Then later in another shell instance:
+
+  $ ssh-locate
+  SSH_AUTH_SOCK=/tmp/zed; export SSH_AUTH_SOCK;
+  SSH_AGENT_PID=1908155; export SSH_AGENT_PID;
+  echo Agent pid 1908155;
+          LONGDESC
+        end
+
+        class_option :emacs, type: :boolean, desc: 'Output EMACS LISP to execute in EMACS'
 
         def locate_agent
           @scanner = Scanner.new
