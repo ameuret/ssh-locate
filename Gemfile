@@ -11,5 +11,6 @@ group :dev do
   gem "aruba"
   gem "guard-cucumber"
   gem "rspec-expectations"
+  gem "solargraph"
 end
 

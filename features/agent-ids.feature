@@ -14,12 +14,13 @@ Feature: Agent IDs
     And the output should contain the correct agent PID
     And the output should contain the correct agent socket
     
-  Scenario: No agent is running or localizable
+  Scenario: No agent is running or locatable
     Given no agent is running
     When I run `ssh-locate`
     Then the output should be empty
     
-  Scenario: Locate an agent that shows its socket
+@focus
+  Scenario: Locate an agent that shows its socket in the command line
     Given an ssh agent has been launched with a specific socket
     Given the user's shell is Bash
     When I run `ssh-locate`
@@ -29,7 +30,7 @@ Feature: Agent IDs
     And the output should contain "export SSH_AGENT_PID;"
     And the output should contain the correct agent PID
     And the output should contain the correct agent socket
-    
+
   Scenario: Recognize and honor the agent managed by Ubuntu
     Given an ssh agent has been launched in my Ubuntu session
     When I run `ssh-locate`
@@ -39,7 +40,7 @@ Feature: Agent IDs
     And the output should contain "export SSH_AGENT_PID;"
     And the output should contain the correct agent PID
     And the output should contain the correct agent socket
-    
+
   Scenario: Ignore agents run by someone else
     Given an ssh agent is running for another user
     And no ssh agent is running for me
