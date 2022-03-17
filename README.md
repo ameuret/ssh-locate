@@ -1,6 +1,7 @@
 ssh-locate
 ==========
 [![Build Status](https://secure.travis-ci.org/ameuret/ssh-locate.png)](http://travis-ci.org/ameuret/ssh-locate)
+![Gem](https://img.shields.io/gem/dt/ssh-locate?label=RubygemsDL&logo=ruby&logoColor=red)
 
   A command line tool that helps you locate and contact a SSH agent launched in a separate shell.
 
